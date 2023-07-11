@@ -1,0 +1,12 @@
+# Heavy data
+data/
+
+# Miscellaneous data
+misc/
+
+# Ignoring the power prediction parts for the moment
+./scripts/run_prediction_per_user.py
+./scripts/predict_jobs_power.py
+./notebooks/2023_06_08_marconi_jobs_prediction.ipynb
+./notebooks/2023_06_26_debugging_predictions.ipynb
+./notebooks/2023_06_29_marconi_jobs_analyse_pred_results.ipynb

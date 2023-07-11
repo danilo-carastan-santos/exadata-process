@@ -1,0 +1,26 @@
+#+TITLE: M100 ExaData processing
+
+* Introduction
+  This repository contains labbooks, scripts, and analysis of exploiting the
+  Marconi100 ExaData dataset (https://gitlab.com/ecs-lab/exadata), which was
+  used during many works of the DataMove team (https://team.inria.fr/datamove/)
+
+* Authors
+- Danilo Carastan-Santos: [[https://danilo-carastan-santos.github.io/]]
+  - Labbook: [[./labbooks/LabBook_DCS.org]]
+
+* Repository Structure
+
+|-----------------+-----------------------------------------------------------------|
+| Directory Name  | Description                                                     |
+|-----------------+-----------------------------------------------------------------|
+| [[./notebooks]] | Jupyter noteboks used for prototyping scripts and data analysis |
+| [[./scripts]]   | Python scripts used to process the full M100 dataset            |
+| [[./labbooks]]  | Laboratory notebooks with additional information                |
+|-----------------+-----------------------------------------------------------------|
+
+* Acknowledgement
+
+The realization of this repository was partly supported by the EU MSCA PF
+LIGHTAIDGE project (g.a. 101107953), and the EuroHPC EU Regale project
+(g.a. 956560).

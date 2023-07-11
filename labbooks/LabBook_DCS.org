@@ -1,0 +1,130 @@
+#+TITLE: Danilo Carastan-Santos Lab Book
+
+* List of OAR commands to run the scripts (the workflow)
+The below sections can be considered more or less as a workflow, starting from
+the M100 raw dataset. *I advise changing the relative paths to global related*
+*to your machine, copying/pasting the commands below may not work due to relative
+paths.*
+
+** 0. Downloading and decompressing data
+** 1. Running first preprocessing ~process_marconi_jobs_1.py~
+
+#+begin_example
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-01/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-01/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-02/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-02/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-03/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-03/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-04/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-04/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-05/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-06/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-06/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-07/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-07/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-08/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-08/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=2:00:00 "python ./scripts/process_marconi_jobs_1.py -j ./data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p ./data/year_month=22-09/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+#+end_example
+
+** 2. Running second preprocessing ~process_marconi_jobs_2.py~
+
+#+begin_example
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-01/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-01/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-01/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-02/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-02/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-02/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-03/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-03/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-03/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-04/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-04/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-04/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=12:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-05/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=12:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-06/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-06/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-06/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-07/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-07/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-07/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=12:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-08/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-08/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-08/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/process_marconi_jobs_2.py -js ./data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/a_0_filter12_singlenode.csv -jm ./data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/a_0_filter12_multinode.csv -p ./data/year_month=22-09/plugin=ipmi_pub/metric=total_power/a_0.parquet"
+#+end_example
+
+** 3. Compile the processed files
+
+#+begin_example
+find . -name '*filter123*' | tar -zcvf exadata_job_energy_profiles.tar.gz --files-from -
+#+end_example
+
+** 4. Compute total power metrics (mean, meadian, etc)
+
+#+begin_example
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-01"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-02"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-03"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-04"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-05"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-06"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-07"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-08"
+
+oarsub -l nodes=1,walltime=5:00:00 "python ./scripts/marconi_jobs_extract_power_metrics.py -d ./data/year_month=22-09"
+#+end_example
+** 5. Merge job files into a single CSV file
+This will output the ~filter123_all_jobs_aggmetrics.csv.gz~.
+
+#+begin_example
+python merge_jobfiles.py -d ./data/
+#+end_example
+
+** 6. Run the mean total power prediction script
+
+#+begin_example
+oarsub -l nodes=1,walltime=13:00:00  "python ./scripts/run_prediction_per_user.py -j ./data/filter123_all_jobs_aggmetrics.csv.gz -o ./data/total_power_mean_predictions_users"
+#+end_example
+
+
+* Scripts description
+ The scripts ~process_marconi_jobs_1.py~ and ~process_marconi_jobs_2.py~ use
+ ~plugin=ipmi_pub/metric=total_power~ as the power metric to evaluate. This
+ metric can be changed inside the code, but this change must be done carefully.
+
+ Most scripts are designed to run taking into account only a single ~year_month~.
+
+** Script ~process_marconi_jobs_1.py~
+Preprocess the dataset original data, filtering jobs (data from
+~plugin=job_table~) that:
+
+1. Jobs that run for less than a minute (too few points)
+2. Jobs that don't have an energy profile (~metric=total_power~ from ipmi)
+
+It outputs two job csv files, one containing the single-node jobs and another with
+the multi-node jobs.
+
+** Script ~process_marconi_jobs_2.py~
+Further preprocesses the dataset, taking the output of
+~process_marconi_jobs_1.py~ as inputs. It filters out jobs that share nodes,
+leaving only the jobs that run exclusively in the nodes.
+
+It outputs an updated job csv files (for single and multi-node), and also the
+power measurements of the jobs with an additional column indicating which
+~job_id~ was running at each timestamp.
+
+** Script ~marconi_jobs_extract_power_metrics.py~
+It computes the maximum power and aggregation metrics (mean, median, standard
+deviation, and others) for each job in the job table (outputs from
+~process_marconi_jobs_2.py~). It enchances these job tables with power data.
+
+We pass only the root directory of the trace (~./data~) and the scripts searches
+for the outputs of ~process_marconi_jobs_2.py~ to work.
+
+** Script ~merge_jobfiles.py~
+It just merges the job table csv files into a single one.

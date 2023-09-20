@@ -10,10 +10,12 @@ import pandas as pd
 Read data
 Output from process_marconi_jobs_1.py
 """
-def read_data(jobfile_single, jobfile_multi, powerfile):
+def read_data(jobfile_single, jobfile_multi, metricfile):
     df_jobs_single = pd.read_csv(jobfile_single)
     df_jobs_multi = pd.read_csv(jobfile_multi)
-    df_total_power = pd.read_parquet(powerfile)
+
+    ## Here i refer to total_power but in reality it can be any metric
+    df_total_power = pd.read_parquet(metricfile)
     df_total_power['node'] = pd.to_numeric(df_total_power['node'])
     df_total_power['value'] = pd.to_numeric(df_total_power['value'])
     return df_jobs_single, df_jobs_multi, df_total_power
@@ -30,6 +32,8 @@ def filter3_1_single(df_jobs_single, df_total_power):
     df_jobs_single["node"] = [ast.literal_eval(x)[0] for x in df_jobs_single['nodes']]
 
     #use this for smaller inputs
+    #TEST_SAMPLE_SIZE = 1000
+    
     TEST_SAMPLE_SIZE = len(df_jobs_single)
     sample = df_jobs_single[0:TEST_SAMPLE_SIZE].copy().reset_index(drop=True)
 
@@ -129,6 +133,8 @@ def filter3_1_multi(df_jobs_multi, df_total_power):
     df_jobs_multi["node"] = [ast.literal_eval(x) for x in df_jobs_multi['nodes']]
 
     #use this for smaller inputs
+    #TEST_SAMPLE_SIZE = 1000
+
     TEST_SAMPLE_SIZE = len(df_jobs_multi)
     sample = df_jobs_multi[0:TEST_SAMPLE_SIZE].copy().reset_index(drop=True)
 
@@ -176,20 +182,21 @@ def filter3_1_multi(df_jobs_multi, df_total_power):
 """
 Save results to csv
 """
-def save_results(df_exclusive_jobs_single, df_exclusive_jobs_multi, df_total_power_exclusive_single, df_total_power_exclusive_multi, jobfile_single, powerfile):    
-    jobfile_out = jobfile_single.rstrip("a_0_filter12_singlenode.csv")
-    powerfile_out = powerfile.rstrip("a_0.parquet")
-    df_exclusive_jobs_single.to_csv(jobfile_out+"a_0_filter123_singlenode.csv", index=False)
-    df_exclusive_jobs_multi.to_csv(jobfile_out+"a_0_filter123_multinode.csv", index=False)
-    df_total_power_exclusive_single.to_csv(powerfile_out+"a_0_filter123_singlenode.csv", index=False)
-    df_total_power_exclusive_multi.to_csv(powerfile_out+"a_0_filter123_multinode.csv", index=False)
+def save_results(df_exclusive_jobs_single, df_exclusive_jobs_multi, df_total_power_exclusive_single, df_total_power_exclusive_multi, jobfile_single, metricfile):   
+    metric = metricfile.split("/")[-2] 
+    jobfile_out = jobfile_single.rstrip(metric+"_filter12_singlenode.csv")     
+    metricfile_out = metricfile.rstrip("a_0.parquet")
+    df_exclusive_jobs_single.to_csv(jobfile_out+metric+"_filter123_singlenode.csv", index=False)
+    df_exclusive_jobs_multi.to_csv(jobfile_out+metric+"_filter123_multinode.csv", index=False)
+    df_total_power_exclusive_single.to_csv(metricfile_out+"a_0_filter123_singlenode.csv", index=False)
+    df_total_power_exclusive_multi.to_csv(metricfile_out+"a_0_filter123_multinode.csv", index=False)
 
 
 """
 Run workflow
 """
-def run_workflow(powerfile, jobfile_single, jobfile_multi):
-    df_jobs_single, df_jobs_multi, df_total_power = read_data(jobfile_single, jobfile_multi, powerfile)
+def run_workflow(metricfile, jobfile_single, jobfile_multi):
+    df_jobs_single, df_jobs_multi, df_total_power = read_data(jobfile_single, jobfile_multi, metricfile)
     #Single-node jobs workflow    
     joined_total_power = filter3_1_single(df_jobs_single, df_total_power)
     exclusive_job_ids = filter3_2(joined_total_power)
@@ -205,7 +212,7 @@ def run_workflow(powerfile, jobfile_single, jobfile_multi):
     df_total_power_exclusive_multi, df_exclusive_jobs_multi = filter3_3_par(df_jobs_multi, exclusive_job_ids, joined_total_power)
     print(df_total_power_exclusive_multi)
     print(df_exclusive_jobs_multi)
-    save_results(df_exclusive_jobs_single, df_exclusive_jobs_multi, df_total_power_exclusive_single, df_total_power_exclusive_multi, jobfile_single, powerfile)
+    save_results(df_exclusive_jobs_single, df_exclusive_jobs_multi, df_total_power_exclusive_single, df_total_power_exclusive_multi, jobfile_single, metricfile)
     ###############################
 
 """
@@ -215,8 +222,8 @@ def read_cli():
     # Make parser object
     p = argparse.ArgumentParser(description='Process ExaData data to extract per-job energy profiles')
     
-    p.add_argument("--powerfile", "-p", type=str, required=True,
-                   help="IPMI power node data file")
+    p.add_argument("--metricfile", "-m", type=str, required=True,
+                   help="Metric file")
     p.add_argument("--jobfilesingle", "-js", type=str, required=True,
                    help="Job table file for single-node jobs (output from process_marconi_jobs_1.py)")
     p.add_argument("--jobfilemulti", "-jm", type=str, required=True,
@@ -236,4 +243,4 @@ if __name__ == '__main__':
         print('Try $python process_marconi_jobs.py --help')
         sys.exit(1)
 
-    run_workflow(args.powerfile, args.jobfilesingle, args.jobfilemulti) 
+    run_workflow(args.metricfile, args.jobfilesingle, args.jobfilemulti) 

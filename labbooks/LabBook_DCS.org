@@ -91,6 +91,60 @@ python merge_jobfiles.py -d ./data/
 oarsub -l nodes=1,walltime=13:00:00  "python ./scripts/run_prediction_per_user.py -j ./data/filter123_all_jobs_aggmetrics.csv.gz -o ./data/total_power_mean_predictions_users"
 #+end_example
 
+* OAR Commands for mem_free
+** Filter 1 and 2 
+#+begin_example
+oarsub -l nodes=1,walltime=2:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/a_0.parquet -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-09/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+#+end_example
+
+** Filter 3
+#+begin_example
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-01/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-01/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-01/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-02/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-02/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-02/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-03/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-03/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-03/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-04/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-04/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-04/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-05/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-06/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-06/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-06/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-07/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-07/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-07/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-08/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-08/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-08/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+
+oarsub -l nodes=1,walltime=10:00:00 "python /home/dcarastandossantos/exadata-process/scripts/process_marconi_jobs_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-09/plugin=job_table/metric=job_info_marconi100/metric=mem_free_filter12_multinode.csv -m /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-09/plugin=ganglia_pub/metric=mem_free/a_0.parquet"
+#+end_example
+
+* OAR Commands for GPU power
+
+** Filter 1 and 2
+#+begin_example
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-01/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-01/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-02/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-02/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-03/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-03/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-04/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-04/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-05/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-05/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-06/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-06/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-07/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-07/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-08/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-08/plugin=ganglia_pub/"
+
+oarsub -l nodes=1,walltime=2:00:00 "python process_marconi_jobs_GPU_1.py -j /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-09/plugin=job_table/metric=job_info_marconi100/a_0.parquet -p /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-09/plugin=ganglia_pub/"
+#+end_example
+
+** Filter 3
+#+begin_example
+python process_marconi_jobs_GPU_2.py -js /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/gpu_power_usage_filter12_singlenode.csv -jm /home/dcarastandossantos/datamove_storage/danilo-carastan-santos/exadata/data/year_month=22-05/plugin=job_table/metric=job_info_marconi100/gpu_power_usage_filter12_multinode.csv -p ./datamove_storage/danilo-carastan-santos/exadata/data/year_month\=22-05/plugin=ganglia_pub/
+#+end_example
 
 * Scripts description
  The scripts ~process_marconi_jobs_1.py~ and ~process_marconi_jobs_2.py~ use
